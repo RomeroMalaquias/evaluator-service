@@ -11,12 +11,22 @@ import javax.script.SimpleScriptContext
  * Created by huxley on 18/07/15.
  */
 class SubmissionTest extends ClientRPC {
+    private String response
     SubmissionTest(String exchangeName, String key) {
         super(exchangeName, key);
     }
 
     void doWork (String message){
-        println "ok";
+        response = 'CORRECT'
+        this.close()
+    }
+
+    public String getResponse() {
+        return response
+    }
+
+    public boolean getLoop() {
+        return this.listen
     }
 
     public static void main(String[] argv) {
