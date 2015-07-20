@@ -15,11 +15,18 @@ class Evaluator extends ServerRPC {
     }
 
     String doWork (String message){
-        Submission submission =  new ObjectMapper().readValue(message, Submission.class);
         ScriptEngineManager factory = new ScriptEngineManager();
         ScriptEngine engine = factory.getEngineByName("groovy");
         StringWriter writer = new StringWriter(); //ouput will be stored here
-
+        Submission submission;
+        try {
+            submission =  new ObjectMapper().readValue(message, Submission.class);
+            if (!submission.isValid()) {
+                return "INVALID_FORMAT"
+            }
+        } catch(Exception e) {
+            return "INVALID_FORMAT"
+        }
 
         ScriptContext context = new SimpleScriptContext();
         context.setWriter(writer); //configures output redirection

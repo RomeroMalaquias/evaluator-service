@@ -42,4 +42,8 @@ class Submission {
     public String toString() {
         return language;
     }
+    public boolean isValid() {
+        println code
+        return code && language && input && output
+    }
 }

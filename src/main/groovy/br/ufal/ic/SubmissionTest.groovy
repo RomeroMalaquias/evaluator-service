@@ -23,6 +23,7 @@ class SubmissionTest extends ClientRPC {
         SubmissionTest fibonacciRpc = new SubmissionTest("EXCHANGE", "evaluator");
         fibonacciRpc.start();
         fibonacciRpc.call('{"code":"print \'Ola mundo\';", "language": "groovy", "input": "2", "output": "oi"}');
+        fibonacciRpc.call('{"language": "groovy", "input": "2", "output": "oi"}');
         fibonacciRpc.call('{"code":"print(\'oi\');", "language": "groovy", "input": "2", "output": "3"}');
         fibonacciRpc.call('{"code":"print(\'Ola mundo\');", "language": "groovy", "input": "2", "output": "Ola mundo"}');
         fibonacciRpc.call('{"code":" \'Ola mundo\';", "language": "groovy", "input": "2", "output": "Ola mundo"}');
