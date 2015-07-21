@@ -19,6 +19,7 @@ class SubmissionTest extends ClientRPC {
     void doWork (String message){
         response = message
         println message
+        this.close()
     }
 
     public String getResponse() {
