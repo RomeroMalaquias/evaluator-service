@@ -1,7 +1,9 @@
 package br.ufal.ic
 
 import br.ufal.ic.commons.ServerRPC
+import groovy.json.JsonSlurper
 import org.codehaus.jackson.map.ObjectMapper
+import org.codehaus.jackson.map.util.JSONPObject
 
 import javax.script.ScriptContext
 import javax.script.ScriptEngine
@@ -18,32 +20,36 @@ class Evaluator extends ServerRPC {
         ScriptEngineManager factory = new ScriptEngineManager();
         ScriptEngine engine = factory.getEngineByName("groovy");
         StringWriter writer = new StringWriter(); //ouput will be stored here
-        Submission submission;
+        def submission;
         try {
-            submission =  new ObjectMapper().readValue(message, Submission.class);
-            if (!submission.isValid()) {
-                return "INVALID_FORMAT"
-            }
+            def jsonSlurper = new JsonSlurper()
+            submission = jsonSlurper.parseText(message)
+            println submission
         } catch(Exception e) {
-            return "INVALID_FORMAT"
+            submission['__result'] = "INVALID_FORMAT"
         }
 
         ScriptContext context = new SimpleScriptContext();
         context.setWriter(writer); //configures output redirection
 
         try {
-            engine.eval(submission.getCode(), context);
-            String result = writer.toString()
-            if (result.equals(submission.getOutput())) {
-                return "CORRECT"
+            if(submission.code && submission.output) {
+                engine.eval(submission.code, context);
+                String result = writer.toString()
+                if (result.equals(submission.output)) {
+                    submission['__result'] = "CORRECT"
+                } else {
+                    submission['__result'] = "WRONG_ANSWER"
+                }
             } else {
-                return "WRONG_ANSWER"
+                submission['__result'] = "INVALID_FORMAT"
             }
+
         } catch (Exception e) {
             e.printStackTrace()
-            return "COMPILATION_ERROR"
+            submission['__result'] = 'COMPILATION_ERROR'
         }
-
+        return submission.toString()
     }
 
     public static void main(String[] argv) {
