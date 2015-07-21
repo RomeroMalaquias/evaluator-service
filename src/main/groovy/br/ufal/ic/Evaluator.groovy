@@ -1,6 +1,7 @@
 package br.ufal.ic
 
 import br.ufal.ic.commons.ServerRPC
+import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 import org.codehaus.jackson.map.ObjectMapper
 import org.codehaus.jackson.map.util.JSONPObject
@@ -49,7 +50,7 @@ class Evaluator extends ServerRPC {
             e.printStackTrace()
             submission['__result'] = 'COMPILATION_ERROR'
         }
-        return submission.toString()
+        return  JsonOutput.toJson(submission)
     }
 
     public static void main(String[] argv) {
