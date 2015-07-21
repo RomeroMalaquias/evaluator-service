@@ -1,7 +1,6 @@
 package br.ufal.ic.evaluator.test.functional
 
-import br.ufal.ic.Evaluator
-import br.ufal.ic.SubmissionTest
+import br.ufal.ic.judge.SubmissionTest
 import spock.lang.Specification
 
 class EvaluatorSpec extends Specification {
