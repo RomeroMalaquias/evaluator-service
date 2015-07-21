@@ -1,11 +1,6 @@
-package br.ufal.ic
+package br.ufal.ic.judge
 
-import br.ufal.ic.commons.ClientRPC
-
-import javax.script.ScriptContext
-import javax.script.ScriptEngine
-import javax.script.ScriptEngineManager
-import javax.script.SimpleScriptContext
+import br.ufal.ic.judge.commons.ClientRPC
 
 /**
  * Created by huxley on 18/07/15.

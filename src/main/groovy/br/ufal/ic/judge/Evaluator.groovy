@@ -1,10 +1,8 @@
-package br.ufal.ic
+package br.ufal.ic.judge
 
-import br.ufal.ic.commons.ServerRPC
+import br.ufal.ic.judge.commons.ServerRPC
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
-import org.codehaus.jackson.map.ObjectMapper
-import org.codehaus.jackson.map.util.JSONPObject
 
 import javax.script.ScriptContext
 import javax.script.ScriptEngine
