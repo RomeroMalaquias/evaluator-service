@@ -15,7 +15,7 @@ task run(type: JavaExec) {
 }
 
 task submit(type: JavaExec) {
-    main = 'br.ufal.ic.judge.SubmissionTest'
+    main = 'br.ufal.ic.judge.test.functional.SubmissionTest'
     classpath = sourceSets.main.runtimeClasspath
 }
 

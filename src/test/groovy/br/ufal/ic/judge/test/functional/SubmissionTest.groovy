@@ -1,4 +1,4 @@
-package br.ufal.ic.judge
+package br.ufal.ic.judge.test.functional
 
 import br.ufal.ic.judge.commons.ClientRPC
 
@@ -26,7 +26,7 @@ class SubmissionTest extends ClientRPC {
     }
 
     public static void main(String[] argv) {
-        SubmissionTest fibonacciRpc = new SubmissionTest("EXCHANGE", "evaluator");
+        SubmissionTest fibonacciRpc = new SubmissionTest("EXCHANGE", "judge");
         fibonacciRpc.start();
         fibonacciRpc.call('{"code":"print \'Ola mundo\';", "language": "groovy", "input": "2", "output": "oi"}');
         fibonacciRpc.call('{"language": "groovy", "input": "2", "output": "oi"}');
